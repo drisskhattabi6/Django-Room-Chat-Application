@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ room.name }} {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-clm-str">
+    <div class="flex-clm-str container">
+        <h2> {{ room.name }} Room </h2>
+
+        <div class="messages flex-clm-str" id="chat-messages" style="align-items: flex-end;">
+            {% for m in messages %}
+                {% if m.user.username == request.user.username %}
+                <div class="flex-start message owner" style="justify-content: flex-end;">
+                {% else %}
+                <div class="flex-start message">
+                {% endif %}
+                    <b>{{ m.user.username }}</b>: {{ m.content }}<br>
+                </div>
+            {% endfor %}
+        </div>
+
+        <form method="post" action="." class="flex-ctr-clm">
+            <input type="text" name="content" placeholder="Your message..." id="chat-message-input">
+            <button class="btn" id="chat-message-submit">Submit</button>
+        </form>
+
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{{ room.slug|json_script:"json-roomname" }}
+{{ request.user.username|json_script:"json-username" }}
+
+<script>
+    const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+    const userName = JSON.parse(document.getElementById('json-username').textContent);
+    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + roomName + '/');
+
+    
+    chatSocket.onclose = function(e) {
+        console.log('onclose')
+    }
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+
+        if (data.message) {
+            document.querySelector('#chat-messages').innerHTML += ('<b>' + data.username + '</b>: ' + data.message + '<br>');
+        } else {
+            alert('The message was empty!')
+        }
+
+        scrollToBottom();
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        e.preventDefault()
+
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+
+        console.log({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        })
+
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        }));
+
+        messageInputDom.value = '';
+
+        return false
+    };
+
+    /**
+    * A function for finding the messages element, and scroll to the bottom of it.
+    */
+    function scrollToBottom() {
+        let objDiv = document.getElementById("chat-messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    // Add this below the function to trigger the scroll on load.
+    scrollToBottom();
+</script>
+{% endblock %}

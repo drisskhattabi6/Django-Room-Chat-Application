@@ -1,0 +1,18 @@
+<header>
+    <div class="container flex-sp-bet">
+        <a href="/">
+            <h2 class="logo">Room-Chat-App</h2>
+        </a>
+        <nav class="nav">
+            <ul>
+                {% if not user.is_authenticated %}
+                <li><button class="btn"><a href="{% url 'login' %}"> <i class="fa-solid fa-right-to-bracket"></i> Login</a></button></li>
+                <li><button class="btn"><a href="{% url 'register' %}"><i class="fa-solid fa-user-plus"></i> Register</a></button></li>
+                {% else %}
+                <li><a href="{% url 'rooms' %}">Rooms</a></li>
+                <li><a href="{% url 'logout' %}" class="btn">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>

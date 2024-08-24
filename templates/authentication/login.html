@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Login Page
+{% endblock title %}
+
+
+{% block links %}
+
+{% endblock links %}
+
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-ctr-clm">
+    <div class="flex-ctr-clm">
+        <form action="" method="post" class="flex-str-clm">
+
+            {% csrf_token %}
+        
+            <h1 style="text-align: center; width: 100%;">Login Page</h1>
+                
+            <label for="username">Username : </label>
+            <input type="text" name="username" id="username" required>
+            
+            <label for="password">Password : </label>
+            <input type="password" name="password" id="password" required>
+        
+            <input type="submit" value="login">
+
+            {% if error_message %}
+            <p style="color: red;">{{error_message}}</p>
+            {% endif %}
+
+            <p>Don't have an account! <a href="{% url 'register' %}" style="color: rgb(47, 47, 255);">Register</a></p>
+            <p><a href="{% url 'password_reset' %}" style="color: rgb(47, 47, 255);">Forgotten your password?</a></p>
+            <!-- <p><a href="">Forgotten your password?</a></p> -->
+
+        </form>
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock content %}

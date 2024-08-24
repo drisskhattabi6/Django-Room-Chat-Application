@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Rooms {% endblock %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+{% endblock links %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main class="flex-clm-str">
+    <div class="flex-clm-str container">
+        <h1>Rooms</h1>
+    
+        <div class="rooms flex-ctr-wr">
+            {% for room in rooms %}
+                <div class="room flex-clm-str">
+                    <h2 class="room-name">{{ room.name }}</h2>
+                    <a href="{% url 'room' room.slug %}" class="btn room-link">Join</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+{% endblock %}
