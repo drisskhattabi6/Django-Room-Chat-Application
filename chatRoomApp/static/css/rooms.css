@@ -1,0 +1,49 @@
+.rooms {
+    margin: 10px;
+    width: 100%;
+}
+
+.room {
+    width: 200px;
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #1f1f1f;
+}
+
+.room .room-name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.room .room-link {
+    padding: 5px 8px;
+    font-size: 16px;
+}
+
+/* ---------------------- */
+
+.messages {
+    width: 500px;
+    margin: 10px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px #1f1f1f;
+    overflow-y: scroll;
+}
+
+.message {
+    width: 100%;
+    background-color: aqua;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.owner {
+    background-color: rgb(0, 255, 200);
+}

@@ -1,0 +1,81 @@
+/******** start footer section *********/
+
+footer {
+    background-color: var(--color1);
+    /* border-radius: 50px 50px 0 0; */
+}
+
+.footer {
+    padding: 20px 0;
+}
+
+.footer a h2 {
+    color: #fff;
+}
+
+.info2 i{
+    color: var(--color3);
+    font-size: 16px;
+    padding-right: 10px;
+}
+.info2 p{
+    color: var(--color2);
+    font-size: 16px;
+}
+
+.footer ul {
+    padding: 20px;
+    list-style: none;
+}
+.footer ul li {
+    padding: 5px 7px;
+}
+.footer ul li a {
+    color: #fff;
+}
+
+.footer ul li button a {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.footer .info2 .medias {
+    padding: 10px 20px;
+}
+.footer .info2 i {
+    font-size: 25px;
+}
+.footer .info2 .media a {
+    margin: 0 20px;
+}
+.footer .info2 .media a i {
+    font-size: 30px;
+}
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    color: var(--color2);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    line-height: 30px;
+    padding-bottom: 20px;
+}
+.copyright span {
+    color: red;
+}
+
+@media screen and (max-width : 830px) {
+    .footer {
+        flex-direction: column;
+    }
+    .footer .medias {
+        flex-direction: row;
+    }
+    .copyright {
+        font-size: 16px;
+    }
+}
+
+/******** end footer section *********/

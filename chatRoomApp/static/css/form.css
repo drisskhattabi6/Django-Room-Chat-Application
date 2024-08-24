@@ -1,0 +1,24 @@
+main{
+    padding-bottom: 40px;
+    background-color: rgb(173, 245, 250);
+}
+
+.form-control {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #333;
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+textarea {
+    resize: none;
+    height: 150px !important;
+    padding: 10px;
+}
