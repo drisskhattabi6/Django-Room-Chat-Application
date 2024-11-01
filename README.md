@@ -1,8 +1,5 @@
 # Django Room Chat Application
 
-## Overview :
-This Repo contains Room Chat Application using Django and channels and web sockets.
-
 ## Overview
 A real-time chat application built with Django and WebSockets (Channels) that allows users to create chat rooms, join existing rooms, and communicate in real-time. The application leverages Django Channels for handling WebSocket connections and Redis as a channel layer for message broadcasting.
 
